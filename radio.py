@@ -12,6 +12,12 @@ class Radio:
 
     def set_center_frequency(self, freq_hz):
         self.sdr.setFrequency(SOAPY_SDR_RX, 0, freq_hz)
+    
+    def get_gain(self):
+        return self.sdr.getGain(SOAPY_SDR_RX,0)
+    
+    def set_gain(self,gain):
+        self.sdr.setGain(SOAPY_SDR_RX,0,gain)
 
     def start_receive(self):
         self.rx_stream = self.sdr.setupStream(SOAPY_SDR_RX, SOAPY_SDR_CF32)
@@ -36,5 +42,7 @@ class Radio:
     def get_buffer_size(self):
         sdr = self.sdr.getHardwareKey()
         if 'HackRF' in sdr:
+            return 131072
+        else:
             return 131072
         # TODO: add other SDR's and buffers
