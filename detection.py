@@ -41,8 +41,8 @@ class Detection:
             for j in range(self.maskLen):
                 cc += (w[j] - wMean)*(self.mask[j]-self.maskMean)/(c*p)
             if cc > self.detThresh:
-                print('Found detect at idx: %d'%cIdx)
-                print('Detect score: %f'%cc)
+                # print('Found detect at idx: %d'%cIdx)
+                # print('Detect score: %f'%cc)
                 detIdx[cIdx] = cc
         return detIdx
 
